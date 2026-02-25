@@ -19,7 +19,6 @@ import random
 
 chatScriptLines: list[str] = []
 lineIndex = 0
-hasSetTitle = False
 
 finalWidth = 1080
 margin = 20 
@@ -52,7 +51,7 @@ def SplitChatScript(Script: str, FirstRun: bool):
   
 
 def ChatGen_Run(FinalWidth: int, MarginWidth: int, OutputDir: str, ChatScript: str):
-  global chatScriptLines, lineIndex, hasSetTitle, finalWidth, margin
+  global chatScriptLines, lineIndex, finalWidth, margin
   
   finalWidth = FinalWidth
   margin = MarginWidth
@@ -60,6 +59,7 @@ def ChatGen_Run(FinalWidth: int, MarginWidth: int, OutputDir: str, ChatScript: s
   chatImg = Image.new(mode='RGBA', size=(1764, 2000), color='#1F1F1FFF') # 1F1F1FFF
   
   SplitChatScript(ChatScript, True)
+  hasSetTitle = False
   msg = None
   elementPos = (27, 135)
   interval = 18
@@ -112,7 +112,7 @@ def ChatGen_Run(FinalWidth: int, MarginWidth: int, OutputDir: str, ChatScript: s
     elementPos = (elementPos[0], elementPos[1] + msg.height + interval)
   
   # 设置默认标题    
-  if not hasSetTitle:
+  if hasSetTitle == False:
     widget.Widget_Title(chatImg, '未标题')
     
   widget.Widget_MainPanel(chatImg, chatImg.height - 98, 98)
