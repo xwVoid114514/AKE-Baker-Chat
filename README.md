@@ -3,6 +3,8 @@
 
 《明日方舟：终末地》Baker聊天生成器
 
+省去PS的时间，一键生成Baker样式的聊天图片！
+
 ## 安装与运行
 
 - 下载[软件包](https://github.com/xwVoid114514/AKE-Baker-Chat/archive/refs/heads/main.zip)并解压，建议解压至全英文目录。
