@@ -5,7 +5,7 @@ from PIL import Image
 tileFolderDir = './Resources/Elements'
 
 
-def MergeTiles(Variant: str, Width: int, Height: int):
+def MergeTiles(Variant: str, Width: int, Height: int) -> Image.Image | None:
   tileSizeList = [
     (30, 30),
     (Width - 60, 30),
@@ -41,11 +41,11 @@ def MergeTiles(Variant: str, Width: int, Height: int):
     return None
   
 
-def ChatBubble_Dark(Width: int, Height: int):
+def ChatBubble_Dark(Width: int, Height: int) -> Image.Image | None:
   return MergeTiles('bubble_dark', Width, Height)
   
   
-def ChatBubble_Light(Width: int, Height: int):
+def ChatBubble_Light(Width: int, Height: int) -> Image.Image | None:
   bubble = MergeTiles('bubble_light', Width, Height)
   if(bubble == None):
     return None

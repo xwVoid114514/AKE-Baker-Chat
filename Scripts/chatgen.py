@@ -14,7 +14,7 @@
 
 from Scripts import widget, util
 from PIL import Image
-import random
+import random, os
 
 
 chatScriptLines: list[str] = []
@@ -24,7 +24,7 @@ finalWidth = 1080
 margin = 20 
   
 
-def SplitChatScript(Script: str, FirstRun: bool):
+def SplitChatScript(Script: str, FirstRun: bool) -> list[str] | None:
   global chatScriptLines, lineIndex
   
   if FirstRun:
@@ -50,7 +50,7 @@ def SplitChatScript(Script: str, FirstRun: bool):
   return csLine.split('|', argCount)
   
 
-def ChatGen_Run(FinalWidth: int, MarginWidth: int, OutputDir: str, ChatScript: str):
+def ChatGen_Run(FinalWidth: int, MarginWidth: int, OutputDir: str, ChatScript: str) -> str:
   global chatScriptLines, lineIndex, finalWidth, margin
   
   finalWidth = FinalWidth
@@ -69,9 +69,11 @@ def ChatGen_Run(FinalWidth: int, MarginWidth: int, OutputDir: str, ChatScript: s
     if csArgs == None: continue
     
     if csArgs[0] == 'h':  # 标题
-      widget.Widget_Title(chatImg, csArgs[1])
-      hasSetTitle = True
-      continue
+      wgt = widget.Widget_Title(csArgs[1])
+      if wgt != None:
+        chatImg.paste(wgt, (0, 0), wgt)
+        hasSetTitle = True
+        continue
       
     elif csArgs[0] == 'b':  # 横幅消息
       widget.Widget_Banner(chatImg, csArgs[1], elementPos[1])
@@ -113,12 +115,16 @@ def ChatGen_Run(FinalWidth: int, MarginWidth: int, OutputDir: str, ChatScript: s
   
   # 设置默认标题    
   if hasSetTitle == False:
-    widget.Widget_Title(chatImg, '未标题')
+    wgt = widget.Widget_Title('未标题')
+    if wgt != None:
+      chatImg.paste(wgt, (0, 0), wgt) 
     
   widget.Widget_MainPanel(chatImg, chatImg.height - 98, 98)
   
   chatImg = util.AddMargin(util.RestrictWidth(chatImg, finalWidth - margin * 2), margin, '#1F1F1FFF')
   
+  if not os.path.exists(OutputDir):
+    os.makedirs(OutputDir)
   filename = f'chat_{hex(random.randint(0x00000000, 0xFFFFFFFF))[2:]}.png'
   util.SaveImage(chatImg, f'{OutputDir}/{filename}')
   

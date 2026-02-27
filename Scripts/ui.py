@@ -3,7 +3,7 @@ from Scripts import chatgen
 
 
 def CreateUI():
-  with gr.Blocks() as MainBlock:
+  with gr.Blocks(title='AKE Baker Chat') as MainBlock:
     with gr.Row():
       with gr.Column():
         with gr.Row():

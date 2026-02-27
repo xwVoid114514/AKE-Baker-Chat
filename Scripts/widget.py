@@ -8,7 +8,7 @@ avatarDir = './Resources/Avatars'
 fontDir = './Resources/Fonts'
 
 
-def RenderAvatar(Name: str):
+def RenderAvatar(Name: str) -> Image.Image | None:
   canvas = Image.new(mode='RGBA', size=(110, 110), color='#00000000')
   
   frame = util.ReadImageFile(f'{elementDir}/avatar_frame.png')
@@ -25,7 +25,7 @@ def RenderAvatar(Name: str):
   return canvas
 
 
-def RenderTextMsg(Text: str, Color: str):
+def RenderTextMsg(Text: str, Color: str) -> Image.Image:
   mlString = textwrap.fill(Text, width=30)
   canvas = Image.new(mode='RGBA', size=(850, 850), color='#00000000')
   font = ImageFont.truetype(font=f'{fontDir}/HarmonyOS_Sans_SC_Regular.ttf', size=28)
@@ -34,17 +34,15 @@ def RenderTextMsg(Text: str, Color: str):
   return canvas
   
 
-def Widget_Title(Canvas: Image.Image, Text: str):
-  titlePanel = util.ReadImageFile(f'{elementDir}/title_panel.png')
-  if titlePanel == None:
-    return False
-  Canvas.paste(titlePanel, (0, 0), titlePanel)
+def Widget_Title(Text: str) -> Image.Image | None:
+  canvas = util.ReadImageFile(f'{elementDir}/title_panel.png')
+  if canvas == None: return None
   font = ImageFont.truetype(font=f'{fontDir}/HarmonyOS_Sans_SC_Regular.ttf', size=32)
-  ImageDraw.Draw(Canvas).text(text=Text, font=font, anchor='lt', xy=(64, 32), fill='#FFFFFF')
-  return True
+  ImageDraw.Draw(canvas).text(text=Text, font=font, anchor='lt', xy=(64, 32), fill='#FFFFFF')
+  return canvas
 
 
-def Widget_MainPanel(Canvas: Image.Image, Height: int, PosY: int):
+def Widget_MainPanel(Canvas: Image.Image, Height: int, PosY: int) -> bool:
   tileSizeList = [(1764, 20), (1764, Height - 48), (1764, 28)]
   tilePosList = [(0, PosY), (0, PosY + 20), (0, PosY + Height - 28)]
   for i in range(0, 3):
@@ -56,12 +54,12 @@ def Widget_MainPanel(Canvas: Image.Image, Height: int, PosY: int):
   return True
         
 
-def Widget_Banner(Canvas: Image.Image, Text: str, PosY: int):  
+def Widget_Banner(Canvas: Image.Image, Text: str, PosY: int) -> None:  
   font = ImageFont.truetype(font=f'{fontDir}/HarmonyOS_Sans_SC_Regular.ttf', size=20)
   ImageDraw.Draw(Canvas).text(text=Text, font=font, anchor='mt', xy=(882, PosY), fill='#A2A2A2')
   
 
-def Widget_Text_Left(Speaker: str, Name: str, Text: str, ShowSpeaker: bool):
+def Widget_Text_Left(Speaker: str, Name: str, Text: str, ShowSpeaker: bool) -> Image.Image | None:
   textImg = RenderTextMsg(Text, '#FFFFFF')  
   bubble = container.ChatBubble_Dark(textImg.width + 60, textImg.height + 40)
   if bubble == None: return None
@@ -82,7 +80,7 @@ def Widget_Text_Left(Speaker: str, Name: str, Text: str, ShowSpeaker: bool):
   return canvas
     
     
-def Widget_Text_Right(Speaker: str, Name: str, Text: str, ShowSpeaker: bool):
+def Widget_Text_Right(Speaker: str, Name: str, Text: str, ShowSpeaker: bool) -> Image.Image | None:
   textImg = RenderTextMsg(Text, '#000000')
   bubble = container.ChatBubble_Light(textImg.width + 60, textImg.height + 40)
   if bubble == None: return None
@@ -101,7 +99,7 @@ def Widget_Text_Right(Speaker: str, Name: str, Text: str, ShowSpeaker: bool):
   return canvas
 
 
-def Widget_Pic_Left(Speaker: str, Name: str, PicPath: str, ShowSpeaker: bool):
+def Widget_Pic_Left(Speaker: str, Name: str, PicPath: str, ShowSpeaker: bool) -> Image.Image | None:
   pic = util.ReadImageFile(PicPath)
   if pic == None: return None
   if pic.width > 500:  # 宽度大于500px则进行压缩
@@ -122,7 +120,7 @@ def Widget_Pic_Left(Speaker: str, Name: str, PicPath: str, ShowSpeaker: bool):
   return canvas
   
 
-def Widget_Pic_Right(Speaker: str, Name: str, PicPath: str, ShowSpeaker: bool):
+def Widget_Pic_Right(Speaker: str, Name: str, PicPath: str, ShowSpeaker: bool) -> Image.Image | None:
   pic = util.ReadImageFile(PicPath)
   if pic == None:
     return None
