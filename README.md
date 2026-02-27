@@ -21,6 +21,8 @@
 <img src="./Docs/readme/pic_28a4422b.png"/>
 <!-- markdownlint-restore -->
 
+\* *此示例使用`./Docs/demo/demoScript.txt`生成。*
+
 ## 使用说明
 
 ### 脚本格式
