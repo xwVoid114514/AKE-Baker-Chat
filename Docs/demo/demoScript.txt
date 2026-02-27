@@ -4,11 +4,11 @@ b|[管理员]修改群名为“AKE-Baker-Chat测试”
 b|[陈千语]加入群聊
 tl|chenqy|陈千语|你说他们两个呀，我认识汤汤之后，就经常看见她们两个像现在这样你追我赶的。
 tl|chenqy|陈千语|印象最深的，就是有一次，汤汤看见弥弗姐在那儿教训几个巡卫，专门跑过去捣乱。
-pl|perlica|佩丽卡|./Docs/demoChatPic001.jpg
+pl|perlica|佩丽卡|./Docs/demo/demoChatPic001.jpg
 tl|perlica|佩丽卡|细说，怎么捣乱的？
 tr|endminf|管理员|细说，怎么捣乱的？
 tl|chenqy|陈千语|那天本来和以前一样，我在城外练剑的时候，汤汤跑了过来。
 tl|chenqy|陈千语|但不一样的是，她没和我斗嘴，反而是急冲冲地把我拽到了一块靠近武陵城的空地。
 tl|chenqy|陈千语|过去看了才知道，弥弗姐正在那儿做示范，汤汤突然就扔了个水球过去。
 tr|endminf|管理员|看来汤大当家很勇哦。
-pr|endminf|管理员|./Docs/demoChatPic002.jpg
+pr|endminf|管理员|./Docs/demo/demoChatPic002.jpg
