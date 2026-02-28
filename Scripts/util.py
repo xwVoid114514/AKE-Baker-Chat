@@ -39,3 +39,18 @@ def RoundedRectMask(Width: int, Height: int, Radius: int) -> Image.Image:
   mask = Image.new('L', (Width, Height), 0)
   ImageDraw.Draw(mask).rounded_rectangle((0, 0, Width, Height), radius=Radius, fill=255, outline=None, corners=(True, True, True, True))
   return mask
+
+def LoadScriptFromFile(Path: str) -> str | None:
+  try:
+    Path = Path.strip()
+    if Path == '':
+      print(f'[ERROR] No file selected')
+      return None
+    if not Path.endswith(('.txt', '.TXT')): 
+      print(f'[ERROR] Invalid file type')
+      return None
+    with open(Path, 'r', encoding='utf-8') as file:
+      return file.read()
+  except:
+    print(f'[ERROR] Cannot open file: {Path}')
+    return None
