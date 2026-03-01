@@ -7,7 +7,7 @@
 
 ## 安装与运行
 
-- 下载[软件包](https://github.com/xwVoid114514/AKE-Baker-Chat/archive/refs/heads/main.zip)并解压，建议解压至全英文目录。
+- 下载[软件包](https://github.com/xwVoid114514/AKE-Baker-Chat/releases)并解压，建议解压至全英文目录。
 - 双击运行`安装环境.bat`，等待安装完成。
 - 双击运行`运行.bat`，程序会自动打开浏览器界面。若未能自动打开，请手动打开浏览器并访问 http://127.0.0.1:7860/
 
@@ -96,3 +96,7 @@
 - 支持自定义发言人头像，头像文件需位于`./Resources/Avatar`目录下。
 - 头像文件命名格式为`avt_XXX.png`，例如`avt_chenqy.png`。
 - 脚本中调用头像时，请将`XXX`填入`<ID>`字段。
+
+## 反馈
+
+- 欢迎在[B站评论区](https://www.bilibili.com/video/BV1gyABzmEui)和[Github Issues](https://github.com/xwVoid114514/AKE-Baker-Chat/issues)反馈Bug、改进建议等。
