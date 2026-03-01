@@ -1,5 +1,6 @@
-ChatPics/*
-temp/*
+ChatPics/
+temp/
 Outputs/*
 Scripts/__pycache__/
 .vscode/
+Releases/
