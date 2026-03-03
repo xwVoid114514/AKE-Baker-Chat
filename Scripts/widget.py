@@ -55,7 +55,7 @@ def Widget_MainPanel(Canvas: Image.Image, Height: int, PosY: int) -> bool:
         
 
 def Widget_Banner(Canvas: Image.Image, Text: str, PosY: int) -> None:  
-  font = ImageFont.truetype(font=f'{fontDir}/HarmonyOS_Sans_SC_Regular.ttf', size=20)
+  font = ImageFont.truetype(font=f'{fontDir}/HarmonyOS_Sans_SC_Regular.ttf', size=24)
   ImageDraw.Draw(Canvas).text(text=Text, font=font, anchor='mt', xy=(882, PosY), fill='#A2A2A2')
   
 

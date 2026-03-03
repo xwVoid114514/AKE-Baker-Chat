@@ -33,7 +33,7 @@ def SplitChatScript(Script: str, FirstRun: bool) -> list[str] | None:
     print(f'[INFO] Loaded {len(chatScriptLines)} line(s).')
     return None
   
-  csLine = chatScriptLines[lineIndex].strip(' ')
+  csLine = chatScriptLines[lineIndex].lstrip(' ')
   lineIndex += 1
     
   argCount = 0
