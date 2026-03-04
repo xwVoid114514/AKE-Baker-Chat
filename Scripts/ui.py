@@ -16,14 +16,16 @@ def CreateUI():
               Button_LoadFromFile = gr.Button(value='加载', variant='secondary', size='lg')
               Button_Clear = gr.Button(value='清空', variant='secondary', size='lg')
           ChatScript = gr.TextArea(label='聊天脚本', value='', lines=20, max_lines=100, autoscroll=True)
-        OutputDir = gr.Textbox(label='输出路径', value='./Outputs', max_lines=1)  
-        Button_Run = gr.Button(value='生成', variant='primary')
-        
+        OutputDir = gr.Textbox(label='输出路径', value='./Outputs', max_lines=1)
+        with gr.Row():
+          Button_Render = gr.Button(value='生成', variant='primary')
+          Button_Save = gr.Button(value='保存', variant='primary')
       with gr.Column():
         Preview = gr.Image(label='预览', format='png', type='filepath', value=None, interactive=False)
     
     Button_Clear.click(fn=lambda: None, outputs=[ChatScript])
     Button_LoadFromFile.click(fn=util.LoadScriptFromFile, inputs=[ScriptFilePath], outputs=[ChatScript])  
-    Button_Run.click(fn=chatgen.ChatGen_Run, inputs=[FinalWidth, MarginWidth, OutputDir, ChatScript], outputs=[Preview])    
+    Button_Render.click(fn=chatgen.RenderChat, inputs=[FinalWidth, MarginWidth, ChatScript], outputs=[Preview])
+    Button_Save.click(fn=chatgen.SaveChat, inputs=[OutputDir, Preview], outputs=[])    
   
   MainBlock.launch(inbrowser=True)

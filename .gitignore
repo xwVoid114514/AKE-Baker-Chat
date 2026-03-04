@@ -4,3 +4,4 @@ Outputs/*
 Scripts/__pycache__/
 .vscode/
 Releases/
+Cache/

@@ -14,14 +14,16 @@
 
 from Scripts import widget, util
 from PIL import Image
-import random, os
+import random, os, shutil
 
 
 chatScriptLines: list[str] = []
 lineIndex = 0
 
 finalWidth = 1080
-margin = 20 
+margin = 20
+
+cacheDir = './Cache'
   
 
 def SplitChatScript(Script: str, FirstRun: bool) -> list[str] | None:
@@ -50,7 +52,7 @@ def SplitChatScript(Script: str, FirstRun: bool) -> list[str] | None:
   return csLine.split('|', argCount)
   
 
-def ChatGen_Run(FinalWidth: int, MarginWidth: int, OutputDir: str, ChatScript: str) -> str:
+def RenderChat(FinalWidth: int, MarginWidth: int, ChatScript: str) -> str:
   global chatScriptLines, lineIndex, finalWidth, margin
   
   finalWidth = FinalWidth
@@ -123,9 +125,20 @@ def ChatGen_Run(FinalWidth: int, MarginWidth: int, OutputDir: str, ChatScript: s
   
   chatImg = util.AddMargin(util.RestrictWidth(chatImg, finalWidth - margin * 2), margin, '#1F1F1FFF')
   
-  if not os.path.exists(OutputDir):
-    os.makedirs(OutputDir)
-  filename = f'chat_{hex(random.randint(0x00000000, 0xFFFFFFFF))[2:]}.png'
-  util.SaveImage(chatImg, f'{OutputDir}/{filename}')
+  if not os.path.exists(cacheDir):
+    os.makedirs(cacheDir)
+  filename = f'{hex(random.randint(0x00000000, 0xFFFFFFFF))[2:]}.png'
+  util.SaveImage(chatImg, f'{cacheDir}/{filename}')
   
-  return f'{OutputDir}/{filename}'
+  return f'{cacheDir}/{filename}'
+
+
+def SaveChat(OutputDir: str, CacheImagePath: str) -> None:
+  try:
+    if CacheImagePath == None: return
+    if not os.path.exists(OutputDir):
+      os.makedirs(OutputDir)
+    shutil.copyfile(CacheImagePath, f'{OutputDir}/chat_{os.path.basename(CacheImagePath)}')
+    util.ShowInfo(f'成功保存聊天图片：chat_{os.path.basename(CacheImagePath)}')
+  except:
+    util.ShowError('保存聊天图片时出错！')

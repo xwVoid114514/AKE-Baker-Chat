@@ -1,4 +1,9 @@
 from PIL import Image, ImageDraw
+import gradio as gr
+import shutil, os
+
+
+cacheDir = './Cache'
 
 
 def ReadImageFile(Path: str) -> Image.Image | None:
@@ -54,3 +59,17 @@ def LoadScriptFromFile(Path: str) -> str | None:
   except:
     print(f'[ERROR] Cannot open file: {Path}')
     return None
+  
+
+def ShowError(message: str) -> None:
+  gr.Error(message, duration=5)
+
+
+def ShowInfo(message: str) -> None:
+  gr.Info(message, duration=5)
+
+
+def ClearCache() -> None:
+  shutil.rmtree(cacheDir)
+  os.makedirs(cacheDir)
+  
